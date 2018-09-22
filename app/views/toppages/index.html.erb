@@ -1,11 +1,22 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="row">
+    <aside class="col-md-4">
+      <%= form_for(@taskac) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-xs-8">
+      <%= render 'taskacs/taskacs', taskacs: @taskacs %>
+    </div>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>welcome to the tasklists</h1>
-      <%= link_to 'sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <h1>Welcome to the taskacs</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
 <% end %>
-  
